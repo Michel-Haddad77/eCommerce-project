@@ -42,5 +42,8 @@ Route::group(['middleware' => 'api'], function($router) {
 
 
 //admin routes
-Route::post('/add_category', [AdminController::class, 'addCategory']);
-Route::post('/add_product', [AdminController::class, 'addProduct']);
+Route::controller(AdminController::class)->group(function (){
+    Route::post('/add_category', 'addCategory');
+    Route::post('/add_product', 'addProduct');
+    Route::get('/all_categories', 'getAllCategories');
+});
