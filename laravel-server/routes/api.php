@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JWTController;
 //use App\Http\Controllers\TestController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,3 +48,6 @@ Route::controller(AdminController::class)->group(function (){
     Route::post('/add_product', 'addProduct');
     Route::get('/all_categories', 'getAllCategories');
 });
+
+//Explore route
+Route::get('/all_products/{id?}', [ProductController::class, 'getAllProducts']);
