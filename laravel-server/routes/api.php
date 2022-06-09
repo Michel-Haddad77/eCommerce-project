@@ -3,7 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JWTController;
-use App\Http\Controllers\TestController;
+//use App\Http\Controllers\TestController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,9 @@ use App\Http\Controllers\TestController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+//test
+//Route::get('/category', [TestController::class, 'test2']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -37,5 +41,5 @@ Route::group(['middleware' => 'api'], function($router) {
 }); */
 
 
-//test
-Route::get('/category', [TestController::class, 'test2']);
+//admin routes
+Route::post('/add_category', [AdminController::class, 'addCategory']);
