@@ -26,3 +26,13 @@ Route::group(['middleware' => 'api'], function($router) {
     Route::post('/refresh', [JWTController::class, 'refresh']);
     Route::post('/profile', [JWTController::class, 'profile']);
 });
+
+
+/* Route::group(['prefix' => 'admin'], function(){
+    Route::group(['middleware' => 'role.resto'], function(){
+        Route::get('/', [AdminController::class, 'getAllSalaries']);
+        Route::get('/salaries', [AdminController::class, 'getAllSalaries']);
+    });
+}); */
+
+
