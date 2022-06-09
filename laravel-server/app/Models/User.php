@@ -13,6 +13,12 @@ class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    //Create many to many relationship between users and products (favorites)
+    public function favoritedProducts(){
+
+        return $this->belongsToMany(Product::class, 'favorites');
+    }
+
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *

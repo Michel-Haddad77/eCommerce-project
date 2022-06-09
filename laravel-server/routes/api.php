@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JWTController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,4 +38,4 @@ Route::group(['middleware' => 'api'], function($router) {
 
 
 //test
-Route::get('/category', [CategoryController::class, 'test']);
+Route::get('/category', [TestController::class, 'test2']);

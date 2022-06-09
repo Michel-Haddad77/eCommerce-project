@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+
+    //Create many to many relationship between products and users (favorited by)
+    public function usersWhoFavorited(){
+
+        return $this->belongsToMany(User::class, 'favorites');
+    }
 }
