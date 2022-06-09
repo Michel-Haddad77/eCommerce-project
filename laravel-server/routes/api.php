@@ -49,5 +49,8 @@ Route::controller(AdminController::class)->group(function (){
     Route::get('/all_categories', 'getAllCategories');
 });
 
-//Explore route
-Route::get('/all_products/{id?}', [ProductController::class, 'getAllProducts']);
+//Product routes
+Route::controller(ProductController::class)->group(function (){
+    Route::get('/all_products/{id?}', 'getAllProducts');
+    Route::get('/add_favorite/{user_id}/{product_id}', 'addFavorite');
+});
