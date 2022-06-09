@@ -28,7 +28,7 @@ class ProductController extends Controller
         ], 200);
     }
 
-    //Get all the categories
+    //Add to favorites
     public function addFavorite($user_id,$product_id){
         $favorited = Favorite::where('user_id',$user_id)->where('product_id',$product_id)->first();
 
@@ -44,6 +44,15 @@ class ProductController extends Controller
         $favorited->user_id = $user_id;
         $favorited->product_id = $product_id;
         $favorited->save();
+
+        return response()->json([
+            "status" => "Success",
+        ], 200);
+    }
+
+    //remove favorite
+    public function removeFavorite($user_id,$product_id){
+        Favorite::where('user_id',$user_id)->where('product_id',$product_id)->delete();
 
         return response()->json([
             "status" => "Success",
