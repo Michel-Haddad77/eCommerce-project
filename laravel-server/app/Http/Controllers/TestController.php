@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\User;
+use App\Models\Product;
 
 class TestController extends Controller
 {
@@ -16,8 +17,12 @@ class TestController extends Controller
         return Category::find(1)->products; //returns all products with category id=1
     }
 
-    //testing 1 to many relationship
     function test2(){
+        return Product::find(1)->category; //returns all products that user (id=1) has favorited
+    }
+
+    //testing 1 to many relationship
+    function test3(){
         return User::find(1)->favoritedProducts; //returns all products that user (id=1) has favorited
     }
 }

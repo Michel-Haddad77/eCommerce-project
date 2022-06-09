@@ -14,4 +14,11 @@ class Product extends Model
 
         return $this->belongsToMany(User::class, 'favorites');
     }
+
+    
+    //create an inverse one to many (belongs to) between product and category
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
