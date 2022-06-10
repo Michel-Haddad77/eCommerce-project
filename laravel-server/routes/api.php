@@ -57,9 +57,17 @@ Route::group(['prefix' => 'admin'], function(){
 //Product routes
 Route::controller(ProductController::class)->group(function (){
     Route::get('/all_products/{id?}', 'getAllProducts');
-    Route::post('/add_favorite', 'addFavorite');
-    Route::post('/remove_favorite', 'removeFavorite');
     Route::get('/get_favorites/{id}', 'getFavorites');
+});
+
+//product routes that need authorization
+Route::group(['prefix' => 'user'], function(){
+    Route::group(['middleware' => 'user.access'], function(){
+        Route::controller(ProductController::class)->group(function (){    
+            Route::post('/add_favorite', 'addFavorite');
+            Route::post('/remove_favorite', 'removeFavorite');
+        });
+    });
 });
 
 //Route for unauthorized access

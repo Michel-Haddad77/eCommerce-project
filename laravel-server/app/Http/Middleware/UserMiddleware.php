@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Auth;
 
 class UserMiddleware
 {
@@ -18,8 +19,8 @@ class UserMiddleware
     {
         //Auth returns the authenticated user (or admin) if it exists
         $user = Auth::user();
-        //check if the user is authenticated and if the user is an admin
-        if($user && $user->type == 1 ){
+        //check if the user is authenticated and if the user is not an admin
+        if($user && $user->type == 0 ){
             return $next($request);
         }
 
