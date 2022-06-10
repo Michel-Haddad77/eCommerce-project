@@ -5,6 +5,12 @@
     font-family:Roboto Condensed;
   }
 
+.welcome-body{
+    background: url("../assets/signin-background.jpg") no-repeat center center fixed;
+    background-size: cover;
+    background-blend-mode: soft-light;
+}
+
 .login-container{
     display: flex;
     flex-direction: column;
@@ -12,11 +18,13 @@
     margin-left: 5%;
     height: 70vh;
     margin-bottom: 20%;
-    border:1px solid black;
+    border:1px solid grey;
     width: 40%;
     padding:2%;
     align-items: center;
     border-radius: 15px;
+    background-color: white;
+    box-shadow: 5px 5px 1px grey;
 }
 
 .welcome-h1{
@@ -36,6 +44,15 @@
     height: 50px;
     font-size: x-large;
     margin-bottom: 2%;
+    background-color: lightskyblue;
+    border-color: lightskyblue;
+    border-radius: 5px;
+
+}
+
+.login-btn:hover{
+    background-color: rgba(7, 108, 190, 0.658);
+    border-color: rgba(7, 108, 190, 0.658);
 }
 
 .welcome-h4{
