@@ -54,4 +54,5 @@ Route::controller(ProductController::class)->group(function (){
     Route::get('/all_products/{id?}', 'getAllProducts');
     Route::get('/add_favorite/{user_id}/{product_id}', 'addFavorite');
     Route::get('/remove_favorite/{user_id}/{product_id}', 'removeFavorite');
+    Route::get('/get_favorites/{id}', 'getFavorites');
 });

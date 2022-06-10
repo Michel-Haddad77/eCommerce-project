@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Favorite;
+use App\Models\User;
 
 class ProductController extends Controller
 {
@@ -58,4 +59,16 @@ class ProductController extends Controller
             "status" => "Success",
         ], 200);
     }
+
+    //get all favorites of a single user
+    public function getFavorites($id){
+        $user = User::find($id);
+        $favorites = $user->favoritedProducts;
+
+        return response()->json([
+            "status" => "Success",
+            "data" => $favorites
+        ], 200);
+    }
+
 }
