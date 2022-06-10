@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JWTController;
-//use App\Http\Controllers\TestController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
 
@@ -19,7 +19,7 @@ use App\Http\Controllers\ProductController;
 */
 
 //test
-//Route::get('/category', [TestController::class, 'test2']);
+Route::get('/test', [TestController::class, 'test2']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -35,7 +35,7 @@ Route::group(['middleware' => 'api'], function($router) {
 
 
 /* Route::group(['prefix' => 'admin'], function(){
-    Route::group(['middleware' => 'role.resto'], function(){
+    Route::group(['middleware' => 'admin.access'], function(){
         Route::get('/', [AdminController::class, 'getAllSalaries']);
         Route::get('/salaries', [AdminController::class, 'getAllSalaries']);
     });
@@ -43,10 +43,15 @@ Route::group(['middleware' => 'api'], function($router) {
 
 
 //admin routes
-Route::controller(AdminController::class)->group(function (){
-    Route::post('/add_category', 'addCategory');
-    Route::post('/add_product', 'addProduct');
-    Route::get('/all_categories', 'getAllCategories');
+Route::group(['prefix' => 'admin'], function(){
+    Route::group(['middleware' => 'admin.access'], function(){
+        //grouping the routes under the same controller
+        Route::controller(AdminController::class)->group(function (){
+            Route::post('/add_category', 'addCategory');
+            Route::post('/add_product', 'addProduct');
+            Route::get('/all_categories', 'getAllCategories');
+        });
+    });    
 });
 
 //Product routes
@@ -56,3 +61,6 @@ Route::controller(ProductController::class)->group(function (){
     Route::get('/remove_favorite/{user_id}/{product_id}', 'removeFavorite');
     Route::get('/get_favorites/{id}', 'getFavorites');
 });
+
+//Route for unauthorized access
+Route::get('/not_found', [AdminController::class, 'notFound'])->name("not-found");

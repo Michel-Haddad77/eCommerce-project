@@ -45,4 +45,12 @@ class AdminController extends Controller
             "data" => $categories
         ], 200);
     }
+
+    //to be routed to when an unauthorized user tries to access an api
+    public function notFound(){
+        return response()->json([
+            "status" => "Failure",
+            "message" => "Unauthorized"
+        ], 404);
+    }
 }
