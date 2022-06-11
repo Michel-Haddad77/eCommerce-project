@@ -34,14 +34,6 @@ Route::group(['middleware' => 'api'], function($router) {
 });
 
 
-/* Route::group(['prefix' => 'admin'], function(){
-    Route::group(['middleware' => 'admin.access'], function(){
-        Route::get('/', [AdminController::class, 'getAllSalaries']);
-        Route::get('/salaries', [AdminController::class, 'getAllSalaries']);
-    });
-}); */
-
-
 //admin routes
 Route::group(['prefix' => 'admin'], function(){
     Route::group(['middleware' => 'admin.access'], function(){

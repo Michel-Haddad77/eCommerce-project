@@ -69,14 +69,6 @@ let signUpSubmit= (e) =>{
     .then(function (response) {
       console.log(response.data);
       alert(response.data.user.name + " has successfully registered! \nPlease login to proceed");
-      //check if the email exists
-    //   if(response.data["success"]){
-    //     window.location.href = "./pages/explore-page/explore.html";
-    //     localStorage.setItem("id", response.data["id"]);
-    //     //id = response.data["id"];
-    //   }else{
-    //     alert(response.data["response"]); //email already exists
-    //   }
     })
     .catch(function (error){
         //In case of Unauthorization or invalidation
