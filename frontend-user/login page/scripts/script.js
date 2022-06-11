@@ -13,12 +13,15 @@ let logIn = (e)=>{
     //linking with login api
     axios({
       method: 'post',
-      url: 'http://127.0.0.1:8000/api/login',
+      url: 'http://localhost:8000/api/login',
       data: data,
     })
     .then(function (response) {
-      //check if log in was succesfull
-      console.log("this is the respons: "+ response);
+      //storing the token in local storage
+      let token = response.data.access_token;
+      localStorage.setItem("token", token);
+
+      window.location.href = "../index.html";
     //   if(response.data["success"]){
     //     //saving logged in user id in local storage
     //     localStorage.setItem("id", response.data["user_id"]);
@@ -33,7 +36,16 @@ let logIn = (e)=>{
     //   }
     })
     .catch(function (error){
-      console.log(error);
+        //In case of Unauthorization or invalidation
+        //saving the data object in a variable
+        let data = error.response.data;
+        let msg = '';
+        
+        //loop over the entire data object to aollect all messages
+        Object.keys(data).forEach(key =>{
+            msg = msg + data[key] + '\n';
+        })
+        alert(msg);
     })
   }
 
