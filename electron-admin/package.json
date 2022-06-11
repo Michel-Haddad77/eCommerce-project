@@ -1,0 +1,14 @@
+{
+  "name": "electron-admin",
+  "version": "1.0.0",
+  "description": "admin's page",
+  "main": "main.js",
+  "author": "Michel",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^19.0.4"
+  },
+  "scripts": {
+    "start": "electron ."
+  }
+}
