@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles/styles.css" />
+    <link rel="stylesheet" href="../styles/styles.css" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
     <title>Commercify</title>
   </head>
@@ -13,8 +13,25 @@
           <p class="welcome-p">
               Find the best products <br>for your daily needs here
           </p>
+          <input type="text" placeholder="Email address" id="email"><br/>
+          <input type="password" placeholder="Password" id="password">
           <button class="login-btn">Log in</button>
           <h4 class="welcome-h4">New account? <a id="sign-up" href="#">Sign up</a></h4>
       </div>
+
+      <!-- Sign up Modal -->
+      <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+        <span class="close">&times;</span><br/><br/>
+        <form class="form">
+            <input type="text" placeholder="Full Name" id="name"><br/>
+            <input type="text" placeholder="email" id="email"><br/>
+            <input type="password" placeholder="Password" id="password"><br/>
+            <input type="password" placeholder="Confirm Password" id="confirm-password"><br/>
+            <button type="submit" id="sign-up-button">Sign up</button>
+        </form>
+    </div>
   </body>
 </html>
