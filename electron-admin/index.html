@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <title>Hello World!</title>
+    <link rel="stylesheet" href="./styles/styles.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+    <title>Commercify Admin</title>
   </head>
-  <body>
-    <h1>Hello World!</h1>
-    We are using Node.js <span id="node-version"></span>,
-    Chromium <span id="chrome-version"></span>,
-    and Electron <span id="electron-version"></span>.
+  <body class="login-body">
+    <h1 class="brand">Commercify</h1>
+    <div class="login">
+        <h1>Welcome to the<br> Admin Page</h1>
+        <input id="email" type="text" placeholder="Email"> <br>
+        <input id="email" type="text" placeholder="Password">
+        <button class="login-btn">Login</button>
+    </div>
   </body>
 </html>

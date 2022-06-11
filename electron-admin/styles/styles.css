@@ -1,0 +1,52 @@
+*{
+    font-family: Roboto Condensed;
+    box-sizing: border-box;
+}
+
+.login-body{
+    background: url("../assets/login_bg.jpg") no-repeat center center fixed;
+    background-size: cover;
+    background-blend-mode: soft-light;
+}
+
+.brand{
+    color: white;
+}
+
+.login{
+    background-color: white;
+    color: navy;
+    margin: 0;
+    position: absolute;
+    top: 30%;
+    left:35%;
+    width: 30%;
+    padding:2%;
+    border-radius: 15px;
+}
+
+.login h1{
+    text-align: center;
+    font-size: 2.5em;
+}
+.login input {
+    width: 100%;
+    font-size: 22px;
+    line-height: 2;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.login-btn{
+    /* margin-top: 20%; */
+    width:100%;
+    height: 50px;
+    font-size: x-large;
+    margin-bottom: 2%;
+    background-color: navy;
+    border-color: navy;
+    color: white;
+    border-radius: 5px;
+}

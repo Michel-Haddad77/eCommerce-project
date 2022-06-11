@@ -6,6 +6,7 @@ function createWindow(){
     win.loadFile('index.html')
 }
 
+//wait for the app to be ready to launch browser window
 app.whenReady().then(function(){
     createWindow()
 })
