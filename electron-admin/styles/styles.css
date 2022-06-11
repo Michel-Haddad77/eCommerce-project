@@ -50,3 +50,55 @@
     color: white;
     border-radius: 5px;
 }
+
+.header{
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    padding:0 20px;
+}
+
+button{
+    width:fit-content;
+    height:40px;
+    font-size: x-large;
+    background-color: gold;
+    border-color: gold;
+    color: black;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.container{
+    margin:1% 5%;
+    padding:1%;
+    border:3px solid gold;
+    border-radius: 20px;
+    width: 50%;
+}
+
+.container h3{
+    font-size: 2em;
+}
+.main-container{
+    display: flex;
+    margin-top: 10%;
+}
+
+.input{
+    width:70%;
+    font-size: x-large;
+    line-height: 2;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#category{
+    width: 30%;
+    height: 50px;
+    font-size: large;
+}
