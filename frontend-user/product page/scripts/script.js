@@ -114,3 +114,8 @@ function createProduct(name, price, category){
     favorite_icon.classList.add("fa-xl");
     favorite_div.appendChild(favorite_icon)
 }
+
+//when user clicks on home in the nav bar
+document.getElementById("home").addEventListener('click', ()=>{
+    window.location.href = "../signed-in explore page/explore.html";
+})
