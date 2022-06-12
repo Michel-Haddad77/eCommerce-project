@@ -225,13 +225,24 @@ input{
     cursor: pointer;
 }
 
-/* .logout-container{
-    /* visibility: hidden;
-    height: 30px;
+.logout-container{
+    visibility: hidden;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
     width: 150px;
-    float: right;
+    position: absolute;
+    top: auto;
+    left: 80%;
+    background-color: #ccc;
 }
 
-.username:hover ~ .logout-container{
-    display: none;
-} */
+.logout-container button{
+    width:80%;
+    height: 70%;
+    font-size: large;
+    background-color: red;
+    border-radius: 5px;
+    cursor: pointer;
+}

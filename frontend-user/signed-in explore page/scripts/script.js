@@ -66,11 +66,13 @@ axios({
   headers: {
     'Authorization': 'Bearer ' + token
   },
-}).then(function (response) {
+})
+.then(function (response) {
     let username = response.data.name;
     document.getElementById("username").innerHTML = username;
 
-}).catch(function(error){
+})
+.catch(function(error){
   //checking the error
   //alert(JSON.stringify(error.response.data));
 })
@@ -96,3 +98,35 @@ axios({
     createProduct(false,id,name,price,category);
   }
 })
+
+//make the logout button visible when user hovers over the name
+const logout = document.getElementById("logout-container")
+document.getElementById("username").addEventListener('mouseover',() =>{
+  logout.style.visibility = "visible";
+  console.log("workss");
+});
+
+logout.addEventListener('mouseleave', ()=>{
+  logout.style.visibility = "hidden";
+  console.log("workingggg");
+});
+
+
+let logOut = (e)=>{
+  e.preventDefault();
+
+  axios({
+    method: 'post',
+    url: 'http://localhost:8000/api/logout',
+    headers: {
+      'Authorization': 'Bearer ' + token
+    },
+  })
+  .then(function (response) {
+    console.log(response.data.message);
+    localStorage.clear();
+    window.location.href = "../login page/sign-in.html"
+  })
+}
+
+document.getElementById("logout-btn").addEventListener('click', logOut);

@@ -65,6 +65,11 @@ class ProductController extends Controller
         $user = User::find($id);
         $favorites = $user->favoritedProducts;
 
+        foreach($favorites as $favorite){
+            $cat = Category::find($favorite->category_id);
+            $favorite->category = $cat->name;
+        }
+
         return response()->json([
             "status" => "Success",
             "data" => $favorites
