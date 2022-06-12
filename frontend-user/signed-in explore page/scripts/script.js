@@ -52,15 +52,19 @@ function createProduct(id,name,price, category){
 }
 
 //linking to profile api to display the user's name
-var token = localStorage.getItem("")
+var token = localStorage.getItem("token");
 
 axios({
   method: 'post',
   url: 'http://localhost:8000/api/profile',
   headers: {
-    Authorization: 'Bearer ' + token
+    'Authorization': 'Bearer ' + token
   },
 }).then(function (response) {
     let username = response.data.name;
-    console.log(username);
+    document.getElementById("username").innerHTML = username;
+
+}).catch(function(error){
+  //checking the error
+  //alert(JSON.stringify(error.response.data));
 })
