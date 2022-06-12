@@ -59,4 +59,5 @@ function createProduct(all_or_favorites,id,name,price, category){
     window.location.href = "./login page/sign-in.html";
   }
 
+  //go to login page when clicking sign in button
   document.getElementById("sign-in-btn").addEventListener('click', goToLogin);

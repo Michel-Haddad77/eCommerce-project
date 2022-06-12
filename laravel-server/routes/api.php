@@ -56,8 +56,7 @@ Route::controller(ProductController::class)->group(function (){
 Route::group(['prefix' => 'user'], function(){
     Route::group(['middleware' => 'user.access'], function(){
         Route::controller(ProductController::class)->group(function (){    
-            Route::post('/add_favorite', 'addFavorite');
-            Route::post('/remove_favorite', 'removeFavorite');
+            Route::post('/toggle_favorite', 'toggleFavorite');
         });
     });
 });

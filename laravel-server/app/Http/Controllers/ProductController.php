@@ -30,12 +30,14 @@ class ProductController extends Controller
     }
 
     //Add to favorites
-    public function addFavorite(Request $request){
+    public function toggleFavorite(Request $request){
         $favorited = Favorite::where('user_id',$request->user_id)->where('product_id',$request->product_id)->first();
 
+        //If already a favorite, remove from favorites
         if($favorited){
+            Favorite::where('user_id',$request->user_id)->where('product_id',$request->product_id)->delete();
             return response()->json([
-                "status" => "Already a Favorite",
+                "status" => "Removed from favorites",
             ], 200); 
         }
 
@@ -47,18 +49,10 @@ class ProductController extends Controller
         $favorited->save();
 
         return response()->json([
-            "status" => "Success",
+            "status" => "Added to favorites",
         ], 200);
     }
 
-    //remove favorite
-    public function removeFavorite(Request $request){
-        Favorite::where('user_id',$request->user_id)->where('product_id',$request->product_id)->delete();
-
-        return response()->json([
-            "status" => "Success",
-        ], 200);
-    }
 
     //get all favorites of a single user
     public function getFavorites($id){
