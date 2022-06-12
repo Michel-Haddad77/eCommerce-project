@@ -106,12 +106,10 @@ axios({
 const logout = document.getElementById("logout-container")
 document.getElementById("username").addEventListener('mouseover',() =>{
   logout.style.visibility = "visible";
-  console.log("workss");
 });
 
 logout.addEventListener('mouseleave', ()=>{
   logout.style.visibility = "hidden";
-  console.log("workingggg");
 });
 
 //function called when logout buttn is pressed
