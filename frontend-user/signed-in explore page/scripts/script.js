@@ -135,9 +135,9 @@ let logOut = (e)=>{
 
 document.getElementById("logout-btn").addEventListener('click', logOut);
 
-
+//function that gets assigned to every created product div
 function loadProductPage(){
-  
+  //save the product id in local storage
   localStorage.setItem("clicked_product_id", this.id);
   window.location.href = "../product page/product.html";
 };
