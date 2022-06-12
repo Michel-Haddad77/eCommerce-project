@@ -21,6 +21,9 @@ let logIn = (e)=>{
       let token = response.data.access_token;
       localStorage.setItem("token", token);
 
+      let id = response.data.id;
+      localStorage.setItem("id", id);
+
       window.location.href = "../signed-in explore page/explore.html";
     //   if(response.data["success"]){
     //     //saving logged in user id in local storage
