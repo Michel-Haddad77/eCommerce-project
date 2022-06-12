@@ -21,22 +21,11 @@ let logIn = (e)=>{
       let token = response.data.access_token;
       localStorage.setItem("token", token);
 
+      //saving logged in user id in local storage
       let id = response.data.id;
       localStorage.setItem("id", id);
 
       window.location.href = "../signed-in explore page/explore.html";
-    //   if(response.data["success"]){
-    //     //saving logged in user id in local storage
-    //     localStorage.setItem("id", response.data["user_id"]);
-    //     if(response.data["type"]=== 1){
-    //       window.location.href = "./pages/explore-page/explore.html";
-    //     }else{
-    //       window.location.href = "./pages/admin-page/admin.html";
-    //     }
-  
-    //   }else{
-    //     alert(response.data["response"]); //incorrect email and/or password
-    //   }
     })
     .catch(function (error){
         //In case of Unauthorization or invalidation

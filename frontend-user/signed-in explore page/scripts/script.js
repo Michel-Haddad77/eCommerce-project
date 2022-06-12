@@ -14,14 +14,20 @@ axios({
     let category = products[i]["category"];
 
     //call the createProduct function
-    createProduct(id,name,price,category);
+    createProduct(true,id,name,price,category);
   }
 })
 
-//create a product container
-function createProduct(id,name,price, category){
+//create a product container to place in all products section or favorites section
+function createProduct(all_or_favorites,id,name,price, category){
+    //determining the parent container for inserting product(allproducts or favorites)
+    if(all_or_favorites){
+      var all_products_div = document.getElementById("all-container");
+    }else{
+      var all_products_div = document.getElementById("favorites-container");
+    }
+
     //creating product container and inserting it in the all products div
-    const all_products_div = document.getElementById("all-container");
     const product_div = document.createElement("div");
     product_div.id = id;
     product_div.className = "product";
@@ -69,4 +75,24 @@ axios({
   //alert(JSON.stringify(error.response.data));
 })
 
+//get currrent user id form local storage
+let id = localStorage.getItem("id");
+
 //linking to get_favorites to display the user's favorites
+axios({
+  method: 'get',
+  url: 'http://localhost:8000/api/get_favorites/' + id,
+})
+.then(function (response){
+  let favorites = response.data.data;
+  //loop over each product
+  for(let i=0; i<favorites.length; i++){
+    let id = favorites[i]["id"];
+    let name = favorites[i]["name"];
+    let price = favorites[i]["price"];
+    let category = favorites[i]["category"];
+
+    //call the createProduct function
+    createProduct(false,id,name,price,category);
+  }
+})
