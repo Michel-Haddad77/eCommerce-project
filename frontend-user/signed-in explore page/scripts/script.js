@@ -1,5 +1,5 @@
 
-//linking with login api
+//linking with get_all_products api
 axios({
   method: 'get',
   url: 'http://localhost:8000/api/all_products',
@@ -18,6 +18,7 @@ axios({
   }
 })
 
+//create a product container
 function createProduct(id,name,price, category){
     //creating product container and inserting it in the all products div
     const all_products_div = document.getElementById("all-container");
@@ -49,3 +50,17 @@ function createProduct(id,name,price, category){
     product_div.appendChild(product_price);
 
 }
+
+//linking to profile api to display the user's name
+var token = localStorage.getItem("")
+
+axios({
+  method: 'post',
+  url: 'http://localhost:8000/api/profile',
+  headers: {
+    Authorization: 'Bearer ' + token
+  },
+}).then(function (response) {
+    let username = response.data.name;
+    console.log(username);
+})
