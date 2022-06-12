@@ -68,3 +68,5 @@ axios({
   //checking the error
   //alert(JSON.stringify(error.response.data));
 })
+
+//linking to get_favorites to display the user's favorites
