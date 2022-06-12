@@ -1,6 +1,5 @@
 //Authenticated user token
 var token = localStorage.getItem("token");
-var is_favorite;
 
 //linking to profile api to display the user's name
 axios({
@@ -29,6 +28,7 @@ document.getElementById("username").addEventListener('mouseover',() =>{
 logout.addEventListener('mouseleave', ()=>{
   logout.style.visibility = "hidden";
 })
+
 
 //function called when logout buttn is pressed
 let logOut = (e)=>{
@@ -62,21 +62,45 @@ axios({
     url: 'http://localhost:8000/api/all_products/' + product_id,
   })
 .then(function (response) {
-    let product = response.data.data;
+  let product = response.data.data;
 
-    let id = product.id;
-    let name = product.name;
-    let price = product.price;
-    let category = product.category;
+  let id = product.id;
+  let name = product.name;
+  let price = product.price;
+  let category = product.category;
+  let is_favorite = false;
 
+  //check if the product is a favorite using an API
+  let data = new FormData();
+
+  data.append('user_id', localStorage.getItem("id"));
+  data.append('product_id', id);
+
+  axios({
+    method: 'post',
+    url: 'http://localhost:8000/api/user/check_favorite',
+    data: data,
+    headers: {
+      'Authorization': 'Bearer ' + token
+    },
+  })
+  .then(function (response) {
+    //check if it's a favorite
+    if(response.data.status){
+      is_favorite = true;
+      console.log(response.data);
+    }
     //call the createProduct function
-    createProduct(id,name,price,category);  
+    createProduct(id,name,price,category,is_favorite)
+  })
 
-   // document.querySelectorAll(".fa-heart")[0].addEventListener('click',toggleFavorite);
+  //call the createProduct function
+  // createProduct(id,name,price,category,is_favorite);  
+
 })
 
 //create a product container
-function createProduct(id,name, price, category){
+function createProduct(id,name, price, category,is_favorite){
 
     var product_div = document.getElementById("product-container");
 
@@ -120,6 +144,11 @@ function createProduct(id,name, price, category){
     //give product id to icon id
     favorite_icon.id = id;
     favorite_icon.onclick = toggleFavorite;
+
+    //check if the product is favorited and change the color to red
+    if(is_favorite){
+      favorite_icon.classList.add("red");
+    }
     favorite_div.appendChild(favorite_icon)
 }
 
@@ -152,11 +181,9 @@ function toggleFavorite(){
   .then(function (response) {
     alert(response.data.status);
     if(response.data.status === "Added to favorites"){
-      favorite_button.classList.add("red");
-      is_favorite = true; 
+      favorite_button.classList.add("red"); 
     }else{
       favorite_button.classList.remove("red");
-      is_favorite = false;
     }
   })
   .catch(function(error){

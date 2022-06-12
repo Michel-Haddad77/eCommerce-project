@@ -57,6 +57,7 @@ Route::group(['prefix' => 'user'], function(){
     Route::group(['middleware' => 'user.access'], function(){
         Route::controller(ProductController::class)->group(function (){    
             Route::post('/toggle_favorite', 'toggleFavorite');
+            Route::post('/check_favorite', 'checkFavorite');
         });
     });
 });

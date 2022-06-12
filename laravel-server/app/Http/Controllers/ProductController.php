@@ -59,6 +59,7 @@ class ProductController extends Controller
         $user = User::find($id);
         $favorites = $user->favoritedProducts;
 
+        //get category og each favorite
         foreach($favorites as $favorite){
             $cat = Category::find($favorite->category_id);
             $favorite->category = $cat->name;
@@ -68,6 +69,22 @@ class ProductController extends Controller
             "status" => "Success",
             "data" => $favorites
         ], 200);
+    }
+
+    //this api checks if an item is a favorite to properly display the favorite button
+    public function checkFavorite(Request $request){
+        $favorited = Favorite::where('user_id',$request->user_id)->where('product_id',$request->product_id)->first();
+
+        if($favorited){
+            return response()->json([
+                "status" => true,
+            ], 200); 
+        }
+
+        return response()->json([
+            "status" => false,
+        ], 200);
+
     }
 
 }
