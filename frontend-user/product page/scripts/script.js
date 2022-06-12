@@ -1,6 +1,8 @@
-//linking to profile api to display the user's name
+//Authenticated user token
 var token = localStorage.getItem("token");
+var is_favorite;
 
+//linking to profile api to display the user's name
 axios({
   method: 'post',
   url: 'http://localhost:8000/api/profile',
@@ -62,16 +64,19 @@ axios({
 .then(function (response) {
     let product = response.data.data;
 
+    let id = product.id;
     let name = product.name;
     let price = product.price;
     let category = product.category;
 
     //call the createProduct function
-    createProduct(name,price,category);  
+    createProduct(id,name,price,category);  
+
+   // document.querySelectorAll(".fa-heart")[0].addEventListener('click',toggleFavorite);
 })
 
 //create a product container
-function createProduct(name, price, category){
+function createProduct(id,name, price, category){
 
     var product_div = document.getElementById("product-container");
 
@@ -112,6 +117,9 @@ function createProduct(name, price, category){
     favorite_icon.classList.add("fa-solid");
     favorite_icon.classList.add("fa-heart");
     favorite_icon.classList.add("fa-xl");
+    //give product id to icon id
+    favorite_icon.id = id;
+    favorite_icon.onclick = toggleFavorite;
     favorite_div.appendChild(favorite_icon)
 }
 
@@ -119,3 +127,40 @@ function createProduct(name, price, category){
 document.getElementById("home").addEventListener('click', ()=>{
     window.location.href = "../signed-in explore page/explore.html";
 })
+
+
+//function called when user alicks on favorite button
+function toggleFavorite(){
+  //saved the button element in a variable
+  var favorite_button = this;
+
+  let data = new FormData();
+
+  data.append('user_id', localStorage.getItem("id"));
+  //get the product id saved in the button
+  data.append('product_id', this.id);
+
+  //linking to toggle favorites api
+  axios({
+    method: 'post',
+    url: 'http://localhost:8000/api/user/toggle_favorite',
+    data: data,
+    headers: {
+    'Authorization': 'Bearer ' + token
+    },
+  })
+  .then(function (response) {
+    alert(response.data.status);
+    if(response.data.status === "Added to favorites"){
+      favorite_button.classList.add("red");
+      is_favorite = true; 
+    }else{
+      favorite_button.classList.remove("red");
+      is_favorite = false;
+    }
+  })
+  .catch(function(error){
+    //checking the error
+    alert(JSON.stringify(error.response.data));
+  })
+}
