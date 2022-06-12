@@ -231,10 +231,10 @@ input{
     justify-content: center;
     align-items: center;
     height: 50px;
-    width: 150px;
+    width: 10%;
     position: absolute;
     top: auto;
-    left: 80%;
+    left: 90%;
     background-color: #ccc;
 }
 
