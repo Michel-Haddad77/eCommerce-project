@@ -33,6 +33,9 @@ function createProduct(all_or_favorites,id,name,price, category){
     product_div.className = "product";
     all_products_div.appendChild(product_div);
 
+    //assigning onclick listener to every product div
+    product_div.onclick = loadProductPage;
+
     //creating product img
     const product_img = document.createElement("img");
     product_img.src = "../assets/placeholder.jpg";
@@ -111,10 +114,11 @@ logout.addEventListener('mouseleave', ()=>{
   console.log("workingggg");
 });
 
-
+//function called when logout buttn is pressed
 let logOut = (e)=>{
   e.preventDefault();
 
+  //linking to logout api
   axios({
     method: 'post',
     url: 'http://localhost:8000/api/logout',
@@ -130,3 +134,11 @@ let logOut = (e)=>{
 }
 
 document.getElementById("logout-btn").addEventListener('click', logOut);
+
+
+function loadProductPage(){
+  
+  localStorage.setItem("clicked_product_id", this.id);
+  window.location.href = "../product page/product.html";
+};
+
