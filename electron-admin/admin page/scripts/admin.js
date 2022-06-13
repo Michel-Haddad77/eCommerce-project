@@ -1,5 +1,40 @@
 var token = localStorage.getItem("token");
 
+
+//linking with add-category api
+axios({
+  method: 'get',
+  url: 'http://localhost:8000/api/admin/all_categories',
+  headers: {
+    'Authorization': 'Bearer ' + token
+  },
+})
+.then(function (response) {
+  //console.log(response.data);
+  let categories = response.data.data;
+  //loop over each product
+  for(let i=0; i<categories.length; i++){
+    let id = categories[i]["id"];
+    let name = categories[i]["name"];
+
+    //call the createProduct function
+    createCategory(id,name);
+  }
+})
+.catch(function (error){
+  console.log(error);
+})
+
+function createCategory(id,name){
+  const drop_down = document.getElementById("category");
+
+  const categ_option = document.createElement("option");
+  categ_option.value = id;
+  categ_option.innerHTML = name;
+  drop_down.appendChild(categ_option);
+}
+
+//function called when add category button is pressed
 function addCategory(){
 
     let data = new FormData();
@@ -28,15 +63,17 @@ function addCategory(){
 
 document.getElementById("category-btn").addEventListener('click',addCategory);
 
+
+
 function addProduct(){
 
   let data = new FormData();
 
   data.append('name', document.getElementById("product-name").value);
   data.append('price', document.getElementById("price").value);
-  data.append('category_id', document.getElementById("category").id);
+  data.append('category_id', document.getElementById("category").value);
 
-  //linking with add-category api
+  //linking with add-product api
   axios({
     method: 'post',
     url: 'http://localhost:8000/api/admin/add_product',
@@ -48,7 +85,7 @@ function addProduct(){
   .then(function (response) {
     //console.log(response.data);
     if(response.data.success){
-      alert('Category added succesfully!');
+      alert('Product added succesfully!');
     }
   })
   .catch(function (error){
@@ -57,3 +94,4 @@ function addProduct(){
 }
 
 document.getElementById("product-btn").addEventListener('click',addProduct);
+
