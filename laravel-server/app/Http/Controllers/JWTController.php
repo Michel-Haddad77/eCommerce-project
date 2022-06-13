@@ -117,7 +117,8 @@ class JWTController extends Controller
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60000,
-            'id' => Auth::user()->id
+            'id' => Auth::user()->id,
+            'type' => Auth::user()->type,
         ]);
     }
 }
