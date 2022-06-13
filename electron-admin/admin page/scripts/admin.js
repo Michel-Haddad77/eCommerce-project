@@ -95,3 +95,23 @@ function addProduct(){
 
 document.getElementById("product-btn").addEventListener('click',addProduct);
 
+//function called when logout buttn is pressed
+let logOut = (e)=>{
+  e.preventDefault();
+
+  //linking to logout api
+  axios({
+    method: 'post',
+    url: 'http://localhost:8000/api/logout',
+    headers: {
+      'Authorization': 'Bearer ' + token
+    },
+  })
+  .then(function (response) {
+    console.log(response.data.message);
+    localStorage.clear();
+    window.location.href = "../index.html"
+  })
+}
+
+document.getElementById("logout-btn").addEventListener('click', logOut);
