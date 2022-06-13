@@ -51,10 +51,7 @@ function addCategory(){
       },
     })
     .then(function (response) {
-      //console.log(response.data);
-      if(response.data.success){
-        alert('Category added succesfully!');
-      }
+      alert('Category added succesfully!');
     })
     .catch(function (error){
       console.log(error);
@@ -83,10 +80,7 @@ function addProduct(){
     },
   })
   .then(function (response) {
-    //console.log(response.data);
-    if(response.data.success){
-      alert('Product added succesfully!');
-    }
+    alert('Product added succesfully!');
   })
   .catch(function (error){
     console.log(error);
