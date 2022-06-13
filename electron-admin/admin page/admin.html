@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src *; script-src *; style-src-elem 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com">
     <link rel="stylesheet" href="../styles/styles.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
     <title>Commercify Admin</title>
@@ -24,15 +24,17 @@
                 <option value="1">Clothes</option>
                 <option value="2">Food</option>
             </select>
-            <button type="submit" id="addCateg-btn" class="btn">Add Product</button>
+            <button type="submit" id="product-btn" class="btn">Add Product</button>
         </div>
 
         <div class="container">
             <h3>Add a category</h3>
             <input type="text" placeholder="Category Name" class="input" id="category-name"><br/>
-            <button type="submit" id = "addCateg-btn" class="btn">Add Category</button>
+            <button type="submit" id = "category-btn" class="btn">Add Category</button>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./scripts/admin.js">
+
     </script>
   </body>
