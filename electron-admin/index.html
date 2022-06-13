@@ -3,18 +3,20 @@
   <head>
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src *; script-src 'self'; style-src-elem 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com">
     <link rel="stylesheet" href="./styles/styles.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
     <title>Commercify Admin</title>
   </head>
   <body class="login-body">
-    <h1 class="brand">Commercify</h1>
+    <h1 class="brand" id="brand">Commercify</h1>
     <div class="login">
         <h1>Welcome to the<br> Admin Page</h1>
         <input id="email" type="text" placeholder="Email"> <br>
-        <input id="email" type="text" placeholder="Password">
-        <button class="login-btn">Login</button>
+        <input id="password" type="password" placeholder="Password">
+        <button id="login-btn" class="login-btn">Login</button>
     </div>
+    <script src="./renderer.js">
+    </script>
   </body>
 </html>
